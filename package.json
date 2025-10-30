@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cypress": "cypress open",
+    "test": "cypress run",
+    "cy:open:sandbox": "cypress open --config \"specPattern=cypress/e2e/sandbox/**/*.cy.ts\"",
+    "cy:run:sandbox": "cypress run --spec \"cypress/e2e/sandbox/**/*.cy.ts\"",
+    "test:allure:open": "npm run allure:clear && cypress run --env allure=true && allure generate allure-results -o allure-report --clean && allure open allure-report",
+    "allure:clear": "rimraf allure-results allure-report || rm -rf allure-results allure-report"
   },
   "repository": {
     "type": "git",
@@ -18,7 +23,9 @@
   },
   "homepage": "https://github.com/Rafael99Gantus/Cypress-tests#readme",
   "devDependencies": {
+    "@shelex/cypress-allure-plugin": "^2.41.2",
     "@types/node": "^24.9.2",
+    "allure-commandline": "^2.34.1",
     "cypress": "^15.5.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
